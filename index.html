@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Ticket Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+    <div class="card">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Ticket systeem</p>
+          <h1>Zoek een product</h1>
+          <p class="subtitle">Zoek op artikelcode of omschrijving en print meteen het ticket.</p>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="search"
+          placeholder="Bijv. SHOSTA-1134 of Potlood"
+          autocomplete="off"
+        >
+        <button onclick="zoekProduct()">Zoeken</button>
+      </div>
+
+      <div id="status" class="status">Data wordt geladen...</div>
+
+      <div id="result" class="result hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    let data = [];
+
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Kon data.json niet laden');
+        }
+        return response.json();
+      })
+      .then(json => {
+        data = json;
+        document.getElementById('status').textContent = 'Data geladen. Je kan nu zoeken.';
+      })
+      .catch(error => {
+        document.getElementById('status').textContent = 'Fout bij laden van data.json';
+        console.error(error);
+      });
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function zoekProduct() {
+      const input = document.getElementById('search');
+      const value = input.value.toLowerCase().trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!value) {
+        resultDiv.classList.remove('hidden');
+        resultDiv.innerHTML = `
+          <div class="empty-state">
+            Geef eerst een artikelcode of omschrijving in.
+          </div>
+        `;
+        return;
+      }
+
+      const gevonden = data.find(product =>
+        String(product.artikelcode).toLowerCase().includes(value) ||
+        String(product.omschrijving).toLowerCase().includes(value)
+      );
+
+      resultDiv.classList.remove('hidden');
+
+      if (!gevonden) {
+        resultDiv.innerHTML = `
+          <div class="empty-state">
+            Geen product gevonden voor <strong>${escapeHtml(input.value)}</strong>.
+          </div>
+        `;
+        return;
+      }
+
+      resultDiv.innerHTML = `
+        <div class="product-card">
+          <div class="product-header">
+            <div>
+              <p class="product-label">Gevonden product</p>
+              <h2>${escapeHtml(gevonden.omschrijving)}</h2>
+            </div>
+            <div class="price-badge">€ ${Number(gevonden.prijs).toFixed(2)}</div>
+          </div>
+
+          <div class="product-grid">
+            <div class="info-box">
+              <span class="info-title">Artikelcode</span>
+              <span class="info-value">${escapeHtml(gevonden.artikelcode)}</span>
+            </div>
+
+            <div class="info-box">
+              <span class="info-title">Aantal labels</span>
+              <span class="info-value">${escapeHtml(gevonden.aantal)}</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="print-btn" onclick='printTicket(${JSON.stringify(gevonden)})'>
+              Print ticket
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function printTicket(product) {
+      localStorage.setItem('printData', JSON.stringify(product));
+      window.open('print.html', '_blank');
+    }
+
+    document.getElementById('search').addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        zoekProduct();
+      }
+    });
+  </script>
+</body>
+</html>

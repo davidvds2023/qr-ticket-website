@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Print Labels</title>
+
+  <link rel="stylesheet" href="print.css">
+
+  <!-- QR library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<div class="toolbar">
+  <h2>Labels</h2>
+  <button onclick="window.print()">Print</button>
+</div>
+
+<div id="labels" class="labels-container"></div>
+
+<script>
+const data = JSON.parse(localStorage.getItem("printData"));
+const container = document.getElementById("labels");
+
+if (!data) {
+  container.innerHTML = "<p>Geen data gevonden</p>";
+} else {
+
+  for (let i = 0; i < data.aantal; i++) {
+
+    const label = document.createElement("div");
+    label.className = "label";
+
+    const qrDiv = document.createElement("div");
+    qrDiv.className = "qr";
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.innerText = "€ " + Number(data.prijs).toFixed(2);
+
+    const code = document.createElement("div");
+    code.className = "code";
+    code.innerText = data.artikelcode;
+
+    label.appendChild(qrDiv);
+    label.appendChild(price);
+    label.appendChild(code);
+
+    container.appendChild(label);
+
+    new QRCode(qrDiv, {
+      text: data.artikelcode,
+      width: 110,
+      height: 110
+    });
+  }
+}
+</script>
+
+</body>
+</html>

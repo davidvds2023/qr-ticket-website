@@ -1,0 +1,26 @@
+[
+    {
+      "artikelcode": "SHOSTA-1134",
+      "omschrijving": "Potlood - R. van der Weyden - portret F. De Goede",
+      "prijs": 1.50,
+      "aantal": 2
+    },
+    {
+      "artikelcode": "SHOSTA-1144",
+      "omschrijving": "Notitieboekje - Catalaanse Atlas",
+      "prijs": 3.50,
+      "aantal": 250
+    },
+    {
+      "artikelcode": "SHOLFS-0658",
+      "omschrijving": "Zeep - Frans Pourbus II - Aartshertog Albrecht",
+      "prijs": 7.00,
+      "aantal": 300
+    },
+    {
+      "artikelcode": "SHOGAD-1028",
+      "omschrijving": "Vingerhoed - Margareta Van Eyck",
+      "prijs": 6.25,
+      "aantal": 2
+    }
+  ]
