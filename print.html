@@ -40,14 +40,9 @@
         code.className = "code";
         code.textContent = data.artikelcode;
 
-        const omschrijving = document.createElement("div");
-        omschrijving.className = "omschrijving";
-        omschrijving.textContent = data.omschrijving;
-
         label.appendChild(qrDiv);
         label.appendChild(price);
         label.appendChild(code);
-        label.appendChild(omschrijving);
 
         page.appendChild(label);
         container.appendChild(page);
