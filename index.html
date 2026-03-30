@@ -8,101 +8,195 @@
 </head>
 <body>
 
-<div class="app">
+  <div class="page-shell">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logos">
-      <img src="logo-musea-brugge-1.png" alt="">
-      <img src="logo-musea-brugge-2.png" alt="">
-    </div>
+    <header class="hero">
+      <div class="hero-top">
+        <div class="logo-strip">
+          <div class="logo-card">
+            <img src="logo-musea-brugge-1.png" alt="Musea Brugge logo 1">
+          </div>
+          <div class="logo-card">
+            <img src="logo-musea-brugge-2.png" alt="Musea Brugge logo 2">
+          </div>
+        </div>
 
-    <h1>QR Ticket Generator</h1>
-    <p>Typ een artikelcode en print tickets</p>
-  </header>
-
-  <!-- SEARCH -->
-  <div class="card">
-    <label>Artikelcode</label>
-    <input id="search" placeholder="Bijv. SHOSTA-1134">
-  </div>
-
-  <!-- RESULT -->
-  <div id="result"></div>
-
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-left">
-    <strong>Musea Brugge</strong><br>
-    Dijver 12<br>
-    8000 Brugge (België)
-  </div>
-
-  <div class="footer-right">
-    📧 <a href="mailto:musea.reservatie@brugge.be">musea.reservatie@brugge.be</a><br>
-    📱 <a href="tel:+3250448743">+32 50 44 87 43</a>
-  </div>
-</footer>
-
-<script>
-let data = [];
-
-fetch('data.json')
-  .then(res => res.json())
-  .then(json => data = json);
-
-document.getElementById('search').addEventListener('input', function () {
-  const value = this.value.toLowerCase();
-
-  const product = data.find(p =>
-    p.artikelcode.toLowerCase() === value
-  );
-
-  const result = document.getElementById('result');
-
-  if (!product) {
-    result.innerHTML = "";
-    return;
-  }
-
-  result.innerHTML = `
-    <div class="card result-card">
-
-      <h2>${product.artikelcode}</h2>
-
-      <div class="form-group">
-        <label>Prijs</label>
-        <input type="number" id="prijs" value="${product.prijs}" step="0.01">
+        <div class="hero-badge">Ticket systeem</div>
       </div>
 
-      <div class="form-group">
-        <label>Aantal</label>
-        <input type="number" id="aantal" value="1">
+      <div class="hero-content">
+        <p class="eyebrow">Musea Brugge</p>
+        <h1>QR Ticket Generator</h1>
+        <p class="subtitle">
+          Typ een artikelcode, kies de prijs en bepaal hoeveel tickets je wil afdrukken.
+        </p>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="panel search-panel">
+        <div class="panel-head">
+          <h2>Artikel zoeken</h2>
+          <p>Zoek op exacte artikelcode.</p>
+        </div>
+
+        <div class="field-group">
+          <label for="search">Artikelcode</label>
+          <input id="search" type="text" placeholder="Bijv. SHOSTA-1134" autocomplete="off">
+        </div>
+
+        <div class="status-box" id="status">
+          Data wordt geladen...
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="panel-head">
+          <h2>Ticketinstellingen</h2>
+          <p>Prijs en aantal tickets instellen.</p>
+        </div>
+
+        <div id="result" class="result-empty">
+          <div class="empty-box">
+            <div class="empty-icon">⌕</div>
+            <div>
+              <strong>Nog geen artikel gekozen</strong>
+              <p>Typ links een artikelcode om verder te gaan.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-col">
+        <h3>Musea Brugge</h3>
+        <p>Dijver 12</p>
+        <p>8000 Brugge (België)</p>
       </div>
 
-      <button onclick='printTicket(${JSON.stringify(product)})'>
-        Print tickets
-      </button>
+      <div class="footer-col">
+        <h3>E-mail</h3>
+        <p>
+          <a href="mailto:musea.reservatie@brugge.be">musea.reservatie@brugge.be</a>
+        </p>
+      </div>
 
-    </div>
-  `;
-});
+      <div class="footer-col">
+        <h3>Telefoon</h3>
+        <p>
+          <a href="tel:+3250448743">+32 50 44 87 43</a>
+        </p>
+      </div>
+    </footer>
 
-function printTicket(product) {
-  const prijs = document.getElementById("prijs").value;
-  const aantal = document.getElementById("aantal").value;
+  </div>
 
-  localStorage.setItem("printData", JSON.stringify({
-    artikelcode: product.artikelcode,
-    prijs: prijs,
-    aantal: aantal
-  }));
+  <script>
+    let data = [];
 
-  window.open("print.html");
-}
-</script>
+    fetch("data.json")
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Kon data.json niet laden");
+        }
+        return res.json();
+      })
+      .then(json => {
+        data = json;
+        document.getElementById("status").textContent = "Data geladen. Typ nu een artikelcode.";
+      })
+      .catch(error => {
+        document.getElementById("status").textContent = "Fout bij laden van data.json.";
+        console.error(error);
+      });
+
+    document.getElementById("search").addEventListener("input", function () {
+      const value = this.value.trim().toLowerCase();
+      const result = document.getElementById("result");
+
+      if (!value) {
+        result.className = "result-empty";
+        result.innerHTML = `
+          <div class="empty-box">
+            <div class="empty-icon">⌕</div>
+            <div>
+              <strong>Nog geen artikel gekozen</strong>
+              <p>Typ links een artikelcode om verder te gaan.</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const product = data.find(p => String(p.artikelcode).toLowerCase() === value);
+
+      if (!product) {
+        result.className = "result-empty";
+        result.innerHTML = `
+          <div class="empty-box">
+            <div class="empty-icon">!</div>
+            <div>
+              <strong>Artikel niet gevonden</strong>
+              <p>Controleer de artikelcode en probeer opnieuw.</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      result.className = "";
+      result.innerHTML = `
+        <div class="ticket-card">
+          <div class="article-chip">${product.artikelcode}</div>
+
+          <div class="big-code-box">
+            <span class="mini-title">Artikelcode</span>
+            <div class="big-code">${product.artikelcode}</div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="setting-card">
+              <label for="prijs">Prijs</label>
+              <input type="number" id="prijs" value="${Number(product.prijs).toFixed(2)}" step="0.01" min="0">
+            </div>
+
+            <div class="setting-card">
+              <label for="aantal">Aantal tickets</label>
+              <input type="number" id="aantal" value="1" min="1">
+            </div>
+          </div>
+
+          <button class="print-btn" onclick='printTicket(${JSON.stringify(product)})'>
+            Tickets afdrukken
+          </button>
+        </div>
+      `;
+    });
+
+    function printTicket(product) {
+      const prijs = Number(document.getElementById("prijs").value);
+      const aantal = Number(document.getElementById("aantal").value);
+
+      if (isNaN(prijs) || prijs < 0) {
+        alert("Geef een geldige prijs in.");
+        return;
+      }
+
+      if (isNaN(aantal) || aantal < 1) {
+        alert("Geef een geldig aantal in.");
+        return;
+      }
+
+      localStorage.setItem("printData", JSON.stringify({
+        artikelcode: product.artikelcode,
+        prijs: prijs,
+        aantal: aantal
+      }));
+
+      window.open("print.html", "_blank");
+    }
+  </script>
 
 </body>
 </html>
