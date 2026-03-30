@@ -43,11 +43,12 @@ body {
   width: 38mm;
   height: 25mm;
   display: grid;
-  grid-template-columns: 14mm 1fr;
+  grid-template-columns: 15mm 1fr;
   align-items: center;
-  gap: 1.2mm;
-  padding: 1.4mm 1.5mm;
+  gap: 1mm;
+  padding: 1.5mm;
   overflow: hidden;
+  background: #fff;
 }
 
 .qr {
@@ -65,18 +66,31 @@ body {
   display: block;
 }
 
-.right {
+.text-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.text-rotate {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  min-width: 0;
+  width: 22mm;
 }
 
 .price {
-  font-size: 9.2pt;
+  font-size: 9pt;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 1mm;
+  margin-bottom: 0.8mm;
   white-space: nowrap;
 }
 
@@ -84,8 +98,6 @@ body {
   font-size: 5.8pt;
   line-height: 1.05;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
 }
 
 .screen-toolbar {
