@@ -3,35 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Ticket Generator</title>
+  <title>Musea Brugge | Ticket Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="logo-group">
+          <div class="logo-box">
+            <img src="logo-musea-brugge-1.png" alt="Musea Brugge logo 1" onerror="this.style.display='none'; this.parentElement.classList.add('logo-placeholder')">
+            <span class="logo-fallback">Logo 1</span>
+          </div>
 
-  <div class="page">
-    <div class="card">
-      <div class="topbar">
+          <div class="logo-box">
+            <img src="logo-musea-brugge-2.png" alt="Musea Brugge logo 2" onerror="this.style.display='none'; this.parentElement.classList.add('logo-placeholder')">
+            <span class="logo-fallback">Logo 2</span>
+          </div>
+        </div>
+
+        <div class="hero-badge">Ticket systeem</div>
+      </div>
+
+      <div class="hero-content">
         <div>
-          <p class="eyebrow">Ticket systeem</p>
-          <h1>Zoek artikel</h1>
-          <p class="subtitle">Typ een artikelcode in. Kies zelf de prijs en hoeveel tickets je wil printen.</p>
+          <p class="eyebrow">Musea Brugge</p>
+          <h1>QR Ticket Generator</h1>
+          <p class="subtitle">
+            Typ een artikelcode in, kies zelf de prijs en bepaal hoeveel tickets je wil afdrukken.
+          </p>
         </div>
       </div>
+    </header>
 
-      <div class="search-box single-column">
-        <label for="search" class="field-label">Artikelcode</label>
-        <input
-          type="text"
-          id="search"
-          placeholder="Bijv. SHOSTA-1134"
-          autocomplete="off"
-        >
-      </div>
+    <main class="main-grid">
+      <section class="panel panel-search">
+        <div class="panel-header">
+          <h2>Artikel zoeken</h2>
+          <p>Zoek op exacte artikelcode.</p>
+        </div>
 
-      <div id="status" class="status">Data wordt geladen...</div>
+        <div class="form-block">
+          <label for="search" class="field-label">Artikelcode</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Bijv. SHOSTA-1134"
+            autocomplete="off"
+          >
+        </div>
 
-      <div id="result" class="result hidden"></div>
-    </div>
+        <div id="status" class="status">Data wordt geladen...</div>
+      </section>
+
+      <section class="panel panel-result">
+        <div class="panel-header">
+          <h2>Ticketinstellingen</h2>
+          <p>Gevonden artikel en afdrukinstellingen.</p>
+        </div>
+
+        <div id="result" class="result hidden"></div>
+      </section>
+    </main>
   </div>
 
   <script>
@@ -82,7 +115,11 @@
       if (!gevonden) {
         resultDiv.innerHTML = `
           <div class="empty-state">
-            Geen artikel gevonden met code <strong>${escapeHtml(input.value)}</strong>.
+            <div class="empty-icon">⌕</div>
+            <div>
+              <strong>Geen artikel gevonden</strong>
+              <p>Er bestaat geen artikel met code <span>${escapeHtml(input.value)}</span>.</p>
+            </div>
           </div>
         `;
         return;
@@ -90,40 +127,30 @@
 
       resultDiv.innerHTML = `
         <div class="product-card">
-          <div class="product-header">
-            <div>
-              <p class="product-label">Gevonden artikel</p>
-              <h2>${escapeHtml(gevonden.artikelcode)}</h2>
+          <div class="article-code-chip">${escapeHtml(gevonden.artikelcode)}</div>
+
+          <div class="article-main">
+            <div class="article-block">
+              <span class="mini-label">Artikelcode</span>
+              <div class="article-code-large">${escapeHtml(gevonden.artikelcode)}</div>
             </div>
           </div>
 
-          <div class="product-grid">
-            <div class="info-box">
-              <span class="info-title">Artikelcode</span>
-              <span class="info-value">${escapeHtml(gevonden.artikelcode)}</span>
-            </div>
-
-            <div class="info-box">
-              <span class="info-title">Standaard prijs</span>
-              <span class="info-value">€ ${Number(gevonden.prijs).toFixed(2)}</span>
-            </div>
-          </div>
-
-          <div class="form-grid">
-            <div class="print-controls">
+          <div class="settings-grid">
+            <div class="setting-box">
               <label for="customPrijs" class="field-label">Prijs op ticket</label>
               <input type="number" id="customPrijs" min="0" step="0.01" value="${Number(gevonden.prijs).toFixed(2)}">
             </div>
 
-            <div class="print-controls">
+            <div class="setting-box">
               <label for="printAantal" class="field-label">Aantal tickets</label>
               <input type="number" id="printAantal" min="1" value="1">
             </div>
           </div>
 
-          <div class="actions">
+          <div class="action-row">
             <button class="print-btn" onclick='printTicket(${JSON.stringify(gevonden)})'>
-              Print ticket(s)
+              Ticket(s) afdrukken
             </button>
           </div>
         </div>
