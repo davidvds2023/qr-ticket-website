@@ -32,34 +32,33 @@ if (!data) {
     const qr = document.createElement("div");
     qr.className = "qr";
 
-    const textWrap = document.createElement("div");
-    textWrap.className = "text-wrap";
-
-    const textRotate = document.createElement("div");
-    textRotate.className = "text-rotate";
+    const priceWrap = document.createElement("div");
+    priceWrap.className = "vertical-block price-block";
 
     const price = document.createElement("div");
     price.className = "price";
     price.textContent = "€ " + Number(data.prijs).toFixed(2);
+    priceWrap.appendChild(price);
+
+    const codeWrap = document.createElement("div");
+    codeWrap.className = "vertical-block code-block";
 
     const code = document.createElement("div");
     code.className = "code";
     code.textContent = data.artikelcode;
-
-    textRotate.appendChild(price);
-    textRotate.appendChild(code);
-    textWrap.appendChild(textRotate);
+    codeWrap.appendChild(code);
 
     label.appendChild(qr);
-    label.appendChild(textWrap);
+    label.appendChild(priceWrap);
+    label.appendChild(codeWrap);
 
     page.appendChild(label);
     container.appendChild(page);
 
     new QRCode(qr, {
       text: data.artikelcode,
-      width: 54,
-      height: 54,
+      width: 120,
+      height: 120,
       correctLevel: QRCode.CorrectLevel.M
     });
   }
