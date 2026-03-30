@@ -9,13 +9,12 @@
   padding: 0;
 }
 
-html,
-body {
+html, body {
   width: 38mm;
   height: 25mm;
+  background: #fff;
   font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #111111;
+  color: #111;
 }
 
 body {
@@ -33,9 +32,6 @@ body {
   page-break-after: always;
   break-after: page;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .page:last-child {
@@ -46,58 +42,50 @@ body {
 .label {
   width: 38mm;
   height: 25mm;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 14mm 1fr;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2mm;
-  padding: 2mm;
+  gap: 1.2mm;
+  padding: 1.4mm 1.5mm;
   overflow: hidden;
-  background: #ffffff;
 }
 
 .qr {
-  width: 15mm;
-  height: 15mm;
+  width: 14mm;
+  height: 14mm;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 15mm;
 }
 
 .qr img,
 .qr canvas {
-  width: 15mm !important;
-  height: 15mm !important;
+  width: 14mm !important;
+  height: 14mm !important;
   display: block;
 }
 
-.text-block {
+.right {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   min-width: 0;
-  flex: 1;
 }
 
 .price {
-  font-size: 10pt;
+  font-size: 9.2pt;
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1.2mm;
+  line-height: 1;
+  margin-bottom: 1mm;
   white-space: nowrap;
 }
 
 .code {
-  font-size: 6.8pt;
-  line-height: 1.1;
+  font-size: 5.8pt;
+  line-height: 1.05;
   white-space: nowrap;
-}
-
-.error-message {
-  padding: 10px;
-  font-size: 14px;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .screen-toolbar {
@@ -110,22 +98,21 @@ body {
 .screen-toolbar button {
   border: none;
   background: #0f8b6d;
-  color: white;
+  color: #fff;
   padding: 10px 14px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(15, 139, 109, 0.25);
 }
 
-.screen-toolbar button:hover {
-  background: #0c6d56;
+.error-message {
+  padding: 10px;
+  font-size: 14px;
 }
 
 @media screen {
-  html,
-  body {
+  html, body {
     width: 100%;
     min-height: 100vh;
     background: #eef2f7;
@@ -138,43 +125,34 @@ body {
   #labels {
     width: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    justify-content: center;
   }
 
   .page {
     width: 38mm;
     height: 25mm;
-    background: white;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
   }
 }
 
 @media print {
-  html,
-  body {
+  html, body {
     width: 38mm;
     height: 25mm;
-    background: white;
+    background: #fff;
   }
 
   body {
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   .screen-toolbar {
     display: none;
   }
 
-  #labels {
-    width: 38mm;
-  }
-
   .page {
-    width: 38mm;
-    height: 25mm;
     margin: 0;
     box-shadow: none;
   }
