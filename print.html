@@ -32,6 +32,9 @@ if (!data) {
     const qr = document.createElement("div");
     qr.className = "qr";
 
+    const right = document.createElement("div");
+    right.className = "right";
+
     const price = document.createElement("div");
     price.className = "price";
     price.textContent = "€ " + Number(data.prijs).toFixed(2);
@@ -40,17 +43,19 @@ if (!data) {
     code.className = "code";
     code.textContent = data.artikelcode;
 
+    right.appendChild(price);
+    right.appendChild(code);
+
     label.appendChild(qr);
-    label.appendChild(price);
-    label.appendChild(code);
+    label.appendChild(right);
 
     page.appendChild(label);
     container.appendChild(page);
 
     new QRCode(qr, {
       text: data.artikelcode,
-      width: 62,
-      height: 62,
+      width: 54,
+      height: 54,
       correctLevel: QRCode.CorrectLevel.M
     });
   }
