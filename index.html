@@ -8,13 +8,13 @@
 </head>
 <body>
 
-<div class="container">
+<div class="app">
 
   <!-- HEADER -->
   <header class="header">
     <div class="logos">
-      <img src="logo-musea-brugge-1.png">
-      <img src="logo-musea-brugge-2.png">
+      <img src="logo-musea-brugge-1.png" alt="">
+      <img src="logo-musea-brugge-2.png" alt="">
     </div>
 
     <h1>QR Ticket Generator</h1>
@@ -34,13 +34,13 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div>
+  <div class="footer-left">
     <strong>Musea Brugge</strong><br>
     Dijver 12<br>
     8000 Brugge (België)
   </div>
 
-  <div>
+  <div class="footer-right">
     📧 <a href="mailto:musea.reservatie@brugge.be">musea.reservatie@brugge.be</a><br>
     📱 <a href="tel:+3250448743">+32 50 44 87 43</a>
   </div>
@@ -68,18 +68,24 @@ document.getElementById('search').addEventListener('input', function () {
   }
 
   result.innerHTML = `
-    <div class="card">
+    <div class="card result-card">
+
       <h2>${product.artikelcode}</h2>
 
-      <label>Prijs</label>
-      <input type="number" id="prijs" value="${product.prijs}" step="0.01">
+      <div class="form-group">
+        <label>Prijs</label>
+        <input type="number" id="prijs" value="${product.prijs}" step="0.01">
+      </div>
 
-      <label>Aantal</label>
-      <input type="number" id="aantal" value="1">
+      <div class="form-group">
+        <label>Aantal</label>
+        <input type="number" id="aantal" value="1">
+      </div>
 
       <button onclick='printTicket(${JSON.stringify(product)})'>
-        Print
+        Print tickets
       </button>
+
     </div>
   `;
 });
