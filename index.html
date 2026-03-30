@@ -13,19 +13,19 @@
       <div class="topbar">
         <div>
           <p class="eyebrow">Ticket systeem</p>
-          <h1>Zoek een product</h1>
-          <p class="subtitle">Zoek op artikelcode of omschrijving en print meteen het ticket.</p>
+          <h1>Zoek artikel</h1>
+          <p class="subtitle">Typ een artikelcode in. Het ticket wordt automatisch geladen. Kies daarna hoeveel tickets je wil printen.</p>
         </div>
       </div>
 
-      <div class="search-box">
+      <div class="search-box single-column">
+        <label for="search" class="field-label">Artikelcode</label>
         <input
           type="text"
           id="search"
-          placeholder="Bijv. SHOSTA-1134 of Potlood"
+          placeholder="Bijv. SHOSTA-1134"
           autocomplete="off"
         >
-        <button onclick="zoekProduct()">Zoeken</button>
       </div>
 
       <div id="status" class="status">Data wordt geladen...</div>
@@ -46,7 +46,7 @@
       })
       .then(json => {
         data = json;
-        document.getElementById('status').textContent = 'Data geladen. Je kan nu zoeken.';
+        document.getElementById('status').textContent = 'Data geladen. Typ nu een artikelcode.';
       })
       .catch(error => {
         document.getElementById('status').textContent = 'Fout bij laden van data.json';
@@ -62,24 +62,19 @@
         .replace(/'/g, '&#039;');
     }
 
-    function zoekProduct() {
+    function zoekProductAutomatisch() {
       const input = document.getElementById('search');
       const value = input.value.toLowerCase().trim();
       const resultDiv = document.getElementById('result');
 
       if (!value) {
-        resultDiv.classList.remove('hidden');
-        resultDiv.innerHTML = `
-          <div class="empty-state">
-            Geef eerst een artikelcode of omschrijving in.
-          </div>
-        `;
+        resultDiv.classList.add('hidden');
+        resultDiv.innerHTML = '';
         return;
       }
 
       const gevonden = data.find(product =>
-        String(product.artikelcode).toLowerCase().includes(value) ||
-        String(product.omschrijving).toLowerCase().includes(value)
+        String(product.artikelcode).toLowerCase() === value
       );
 
       resultDiv.classList.remove('hidden');
@@ -87,7 +82,7 @@
       if (!gevonden) {
         resultDiv.innerHTML = `
           <div class="empty-state">
-            Geen product gevonden voor <strong>${escapeHtml(input.value)}</strong>.
+            Geen artikel gevonden met code <strong>${escapeHtml(input.value)}</strong>.
           </div>
         `;
         return;
@@ -97,7 +92,7 @@
         <div class="product-card">
           <div class="product-header">
             <div>
-              <p class="product-label">Gevonden product</p>
+              <p class="product-label">Gevonden artikel</p>
               <h2>${escapeHtml(gevonden.omschrijving)}</h2>
             </div>
             <div class="price-badge">€ ${Number(gevonden.prijs).toFixed(2)}</div>
@@ -110,14 +105,19 @@
             </div>
 
             <div class="info-box">
-              <span class="info-title">Aantal labels</span>
+              <span class="info-title">Standaard aantal labels</span>
               <span class="info-value">${escapeHtml(gevonden.aantal)}</span>
             </div>
           </div>
 
+          <div class="print-controls">
+            <label for="printAantal" class="field-label">Hoeveel tickets wil je printen?</label>
+            <input type="number" id="printAantal" min="1" value="1">
+          </div>
+
           <div class="actions">
             <button class="print-btn" onclick='printTicket(${JSON.stringify(gevonden)})'>
-              Print ticket
+              Print ticket(s)
             </button>
           </div>
         </div>
@@ -125,15 +125,26 @@
     }
 
     function printTicket(product) {
-      localStorage.setItem('printData', JSON.stringify(product));
+      const aantalInput = document.getElementById('printAantal');
+      const printAantal = Number(aantalInput.value);
+
+      if (!printAantal || printAantal < 1) {
+        alert('Geef een geldig aantal in.');
+        return;
+      }
+
+      const printData = {
+        artikelcode: product.artikelcode,
+        omschrijving: product.omschrijving,
+        prijs: Number(product.prijs),
+        aantal: printAantal
+      };
+
+      localStorage.setItem('printData', JSON.stringify(printData));
       window.open('print.html', '_blank');
     }
 
-    document.getElementById('search').addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
-        zoekProduct();
-      }
-    });
+    document.getElementById('search').addEventListener('input', zoekProductAutomatisch);
   </script>
 </body>
 </html>
