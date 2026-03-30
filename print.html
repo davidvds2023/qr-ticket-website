@@ -9,6 +9,10 @@
 </head>
 <body>
 
+<div class="screen-toolbar">
+  <button onclick="window.print()">Afdrukken</button>
+</div>
+
 <div id="labels"></div>
 
 <script>
@@ -16,7 +20,7 @@ const data = JSON.parse(localStorage.getItem("printData"));
 const container = document.getElementById("labels");
 
 if (!data) {
-  container.innerHTML = "<p>Geen data gevonden.</p>";
+  container.innerHTML = "<p class='error-message'>Geen data gevonden.</p>";
 } else {
   for (let i = 0; i < Number(data.aantal); i++) {
     const page = document.createElement("div");
@@ -45,8 +49,8 @@ if (!data) {
 
     new QRCode(qr, {
       text: data.artikelcode,
-      width: 58,
-      height: 58,
+      width: 62,
+      height: 62,
       correctLevel: QRCode.CorrectLevel.M
     });
   }
