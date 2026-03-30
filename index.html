@@ -14,7 +14,7 @@
         <div>
           <p class="eyebrow">Ticket systeem</p>
           <h1>Zoek artikel</h1>
-          <p class="subtitle">Typ een artikelcode in. Het ticket wordt automatisch geladen. Kies daarna hoeveel tickets je wil printen.</p>
+          <p class="subtitle">Typ een artikelcode in. Kies zelf de prijs en hoeveel tickets je wil printen.</p>
         </div>
       </div>
 
@@ -93,9 +93,8 @@
           <div class="product-header">
             <div>
               <p class="product-label">Gevonden artikel</p>
-              <h2>${escapeHtml(gevonden.omschrijving)}</h2>
+              <h2>${escapeHtml(gevonden.artikelcode)}</h2>
             </div>
-            <div class="price-badge">€ ${Number(gevonden.prijs).toFixed(2)}</div>
           </div>
 
           <div class="product-grid">
@@ -105,14 +104,21 @@
             </div>
 
             <div class="info-box">
-              <span class="info-title">Standaard aantal labels</span>
-              <span class="info-value">${escapeHtml(gevonden.aantal)}</span>
+              <span class="info-title">Standaard prijs</span>
+              <span class="info-value">€ ${Number(gevonden.prijs).toFixed(2)}</span>
             </div>
           </div>
 
-          <div class="print-controls">
-            <label for="printAantal" class="field-label">Hoeveel tickets wil je printen?</label>
-            <input type="number" id="printAantal" min="1" value="1">
+          <div class="form-grid">
+            <div class="print-controls">
+              <label for="customPrijs" class="field-label">Prijs op ticket</label>
+              <input type="number" id="customPrijs" min="0" step="0.01" value="${Number(gevonden.prijs).toFixed(2)}">
+            </div>
+
+            <div class="print-controls">
+              <label for="printAantal" class="field-label">Aantal tickets</label>
+              <input type="number" id="printAantal" min="1" value="1">
+            </div>
           </div>
 
           <div class="actions">
@@ -126,17 +132,24 @@
 
     function printTicket(product) {
       const aantalInput = document.getElementById('printAantal');
+      const prijsInput = document.getElementById('customPrijs');
+
       const printAantal = Number(aantalInput.value);
+      const customPrijs = Number(prijsInput.value);
 
       if (!printAantal || printAantal < 1) {
         alert('Geef een geldig aantal in.');
         return;
       }
 
+      if (isNaN(customPrijs) || customPrijs < 0) {
+        alert('Geef een geldige prijs in.');
+        return;
+      }
+
       const printData = {
         artikelcode: product.artikelcode,
-        omschrijving: product.omschrijving,
-        prijs: Number(product.prijs),
+        prijs: customPrijs,
         aantal: printAantal
       };
 
