@@ -2,60 +2,63 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Print Labels</title>
-
+  <title>Print Ticket</title>
   <link rel="stylesheet" href="print.css">
-
-  <!-- QR library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-<div class="toolbar">
-  <h2>Labels</h2>
-  <button onclick="window.print()">Print</button>
-</div>
+  <div class="toolbar">
+    <h2>Printvoorbeeld</h2>
+    <button onclick="window.print()">Print</button>
+  </div>
 
-<div id="labels" class="labels-container"></div>
+  <div id="labels" class="labels-container"></div>
 
-<script>
-const data = JSON.parse(localStorage.getItem("printData"));
-const container = document.getElementById("labels");
+  <script>
+    const data = JSON.parse(localStorage.getItem("printData"));
+    const container = document.getElementById("labels");
 
-if (!data) {
-  container.innerHTML = "<p>Geen data gevonden</p>";
-} else {
+    if (!data) {
+      container.innerHTML = "<p>Geen data gevonden.</p>";
+    } else {
+      for (let i = 0; i < data.aantal; i++) {
+        const page = document.createElement("div");
+        page.className = "print-page";
 
-  for (let i = 0; i < data.aantal; i++) {
+        const label = document.createElement("div");
+        label.className = "label";
 
-    const label = document.createElement("div");
-    label.className = "label";
+        const qrDiv = document.createElement("div");
+        qrDiv.className = "qr";
 
-    const qrDiv = document.createElement("div");
-    qrDiv.className = "qr";
+        const price = document.createElement("div");
+        price.className = "price";
+        price.textContent = "€ " + Number(data.prijs).toFixed(2);
 
-    const price = document.createElement("div");
-    price.className = "price";
-    price.innerText = "€ " + Number(data.prijs).toFixed(2);
+        const code = document.createElement("div");
+        code.className = "code";
+        code.textContent = data.artikelcode;
 
-    const code = document.createElement("div");
-    code.className = "code";
-    code.innerText = data.artikelcode;
+        const omschrijving = document.createElement("div");
+        omschrijving.className = "omschrijving";
+        omschrijving.textContent = data.omschrijving;
 
-    label.appendChild(qrDiv);
-    label.appendChild(price);
-    label.appendChild(code);
+        label.appendChild(qrDiv);
+        label.appendChild(price);
+        label.appendChild(code);
+        label.appendChild(omschrijving);
 
-    container.appendChild(label);
+        page.appendChild(label);
+        container.appendChild(page);
 
-    new QRCode(qrDiv, {
-      text: data.artikelcode,
-      width: 110,
-      height: 110
-    });
-  }
-}
-</script>
-
+        new QRCode(qrDiv, {
+          text: data.artikelcode,
+          width: 120,
+          height: 120
+        });
+      }
+    }
+  </script>
 </body>
 </html>
