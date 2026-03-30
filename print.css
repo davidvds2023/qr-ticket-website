@@ -1,119 +1,61 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
-  color: #111827;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.toolbar h2 {
-  font-size: 22px;
-}
-
-.toolbar button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  background: #111827;
-  color: white;
-}
-
-.labels-container {
-  padding: 24px;
-}
-
-.print-page {
+/* A4 pagina */
+.page {
   width: 210mm;
-  min-height: 297mm;
-  margin: 0 auto 20px auto;
-  background: white;
+  height: 297mm;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   page-break-after: always;
-  break-after: page;
 }
 
-.print-page:last-child {
-  page-break-after: auto;
-  break-after: auto;
-}
-
+/* TICKET */
 .label {
-  width: 70mm;
-  height: 110mm;
-  background: white;
-  border: 2px solid #444;
-  border-radius: 8px;
-  padding: 10mm;
+  width: 25mm;   /* breedte */
+  height: 38mm;  /* hoogte */
+
+  border: 1px solid black;
+  border-radius: 3mm;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+
   text-align: center;
+  padding: 2mm;
+  gap: 2mm;
 }
 
-.qr {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
+/* QR code */
+.label div:first-child {
+  transform: scale(0.6);
 }
 
-.price {
-  font-size: 24px;
-  font-weight: bold;
+/* prijs */
+.label h2 {
+  font-size: 10pt;
+  margin: 0;
 }
 
-.code {
-  font-size: 15px;
-  font-weight: 700;
+/* artikelcode */
+.label p {
+  font-size: 7pt;
+  margin: 0;
 }
 
-.omschrijving {
-  font-size: 12px;
-  line-height: 1.4;
-}
-
+/* print instellingen */
 @media print {
-  body {
-    background: white;
-  }
-
-  .toolbar {
+  button {
     display: none;
   }
 
-  .labels-container {
-    padding: 0;
-  }
-
-  .print-page {
+  body {
     margin: 0;
-    width: 210mm;
-    min-height: 297mm;
-  }
-
-  .label {
-    border: 1px solid #000;
   }
 }
