@@ -1,5 +1,5 @@
 @page {
-  size: 25mm 38mm;
+  size: 38mm 25mm;
   margin: 0;
 }
 
@@ -11,8 +11,8 @@
 
 html,
 body {
-  width: 25mm;
-  min-height: 38mm;
+  width: 38mm;
+  height: 25mm;
   font-family: Arial, sans-serif;
   background: #ffffff;
   color: #111111;
@@ -24,12 +24,12 @@ body {
 }
 
 #labels {
-  width: 25mm;
+  width: 38mm;
 }
 
 .page {
-  width: 25mm;
-  height: 38mm;
+  width: 38mm;
+  height: 25mm;
   page-break-after: always;
   break-after: page;
   overflow: hidden;
@@ -44,43 +44,54 @@ body {
 }
 
 .label {
-  width: 25mm;
-  height: 38mm;
+  width: 38mm;
+  height: 25mm;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 1.4mm;
-  padding: 1.5mm 1.2mm;
-  text-align: center;
+  justify-content: flex-start;
+  gap: 2mm;
+  padding: 2mm;
   overflow: hidden;
+  background: #ffffff;
 }
 
 .qr {
-  width: 14mm;
-  height: 14mm;
+  width: 15mm;
+  height: 15mm;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 15mm;
 }
 
 .qr img,
 .qr canvas {
-  width: 14mm !important;
-  height: 14mm !important;
+  width: 15mm !important;
+  height: 15mm !important;
   display: block;
 }
 
+.text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+}
+
 .price {
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
+  margin-bottom: 1.2mm;
   white-space: nowrap;
 }
 
 .code {
   font-size: 6.8pt;
-  line-height: 1.05;
+  line-height: 1.1;
   white-space: nowrap;
 }
 
@@ -133,8 +144,8 @@ body {
   }
 
   .page {
-    width: 25mm;
-    height: 38mm;
+    width: 38mm;
+    height: 25mm;
     background: white;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
@@ -143,8 +154,8 @@ body {
 @media print {
   html,
   body {
-    width: 25mm;
-    height: 38mm;
+    width: 38mm;
+    height: 25mm;
     background: white;
   }
 
@@ -158,10 +169,12 @@ body {
   }
 
   #labels {
-    width: 25mm;
+    width: 38mm;
   }
 
   .page {
+    width: 38mm;
+    height: 25mm;
     margin: 0;
     box-shadow: none;
   }
