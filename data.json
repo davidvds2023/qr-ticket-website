@@ -1,26 +1,386 @@
 [
-    {
-      "artikelcode": "SHOSTA-1134",
-      "omschrijving": "Potlood - R. van der Weyden - portret F. De Goede",
-      "prijs": 1.50,
-      "aantal": 2
-    },
-    {
-      "artikelcode": "SHOSTA-1144",
-      "omschrijving": "Notitieboekje - Catalaanse Atlas",
-      "prijs": 3.50,
-      "aantal": 250
-    },
-    {
-      "artikelcode": "SHOLFS-0658",
-      "omschrijving": "Zeep - Frans Pourbus II - Aartshertog Albrecht",
-      "prijs": 7.00,
-      "aantal": 300
-    },
-    {
-      "artikelcode": "SHOGAD-1028",
-      "omschrijving": "Vingerhoed - Margareta Van Eyck",
-      "prijs": 6.25,
-      "aantal": 2
-    }
-  ]
+  {
+    "omschrijving": "Potlood - R. van der Weyden - portret F. De Goede",
+    "artikelcode": "SHOSTA-1134",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Potlood - Margareta Van Eyck",
+    "artikelcode": "SHOSTA-1135",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Potlood - Aurelius Augustinus - De Civitate Dei",
+    "artikelcode": "SHOSTA-1136",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Potlood - Catalaanse Atlas",
+    "artikelcode": "SHOSTA-1137",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Potlood - Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOSTA-1138",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Balpen - R. van der Weyden - portret F. De Goede",
+    "artikelcode": "SHOSTA-1139",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Balpen - Margareta Van Eyck",
+    "artikelcode": "SHOSTA-1140",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Balpen - Aurelius Augustinus - De Civitate Dei",
+    "artikelcode": "SHOSTA-1141",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Balpen - Catalaanse Atlas",
+    "artikelcode": "SHOSTA-1142",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Balpen - Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOSTA-1143",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Notitieboekje - Catalaanse Atlas",
+    "artikelcode": "SHOSTA-1144",
+    "prijs": 3.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Notitieboekje - Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOSTA-1145",
+    "prijs": 3.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Notitieboekje - Margareta Van Eyck",
+    "artikelcode": "SHOSTA-1146",
+    "prijs": 3.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Notitieboekje - Bossuet - De Rozenhoedkaai",
+    "artikelcode": "SHOSTA-1147",
+    "prijs": 3.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Notitieboekje - Van Eyck - Madonna met Kan. VDP",
+    "artikelcode": "SHOSTA-1148",
+    "prijs": 3.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Schetsboek HC - Catalaanse Atlas",
+    "artikelcode": "SHOSTA-1149",
+    "prijs": 9.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Schetsboek HC - Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOSTA-1150",
+    "prijs": 9.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Schetsboek HC - Margareta Van Eyck",
+    "artikelcode": "SHOSTA-1151",
+    "prijs": 9.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Schetsboek HC - Bossuet - De Rozenhoedkaai",
+    "artikelcode": "SHOSTA-1152",
+    "prijs": 9.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Schetsboek HC - Van Eyck - Madonna met Kan. VDP",
+    "artikelcode": "SHOSTA-1153",
+    "prijs": 9.5,
+    "aantal": 250
+  },
+  {
+    "omschrijving": "Zeep - Frans Pourbus II - Aartshertog Albrecht",
+    "artikelcode": "SHOLFS-0658",
+    "prijs": 7.0,
+    "aantal": 300
+  },
+  {
+    "omschrijving": "Zeep - Frans Pourbus II - Aarsthertogin Isabella",
+    "artikelcode": "SHOLFS-0659",
+    "prijs": 7.0,
+    "aantal": 300
+  },
+  {
+    "omschrijving": "Zeep - Augustinus - De Civitate Dei",
+    "artikelcode": "SHOLFS-0660",
+    "prijs": 7.0,
+    "aantal": 300
+  },
+  {
+    "omschrijving": "Opstrijklabel van der Weyden - Portret F. De Goede",
+    "artikelcode": "SHOGAD-1025",
+    "prijs": 7.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Opstrijklabel - A copy of Firdazsi's 'Shahnama'",
+    "artikelcode": "SHOGAD-1026",
+    "prijs": 7.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Pillendoosje - Margareta Van Eyck",
+    "artikelcode": "SHOGAD-1027",
+    "prijs": 9.0,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Vingerhoed - Margareta Van Eyck",
+    "artikelcode": "SHOGAD-1028",
+    "prijs": 6.25,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Vingerhoed - Augustinus - De Civitate Dei",
+    "artikelcode": "SHOGAD-1029",
+    "prijs": 6.25,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Brillendoekje - A copy of Firdazsi's 'Shahnama'",
+    "artikelcode": "SHOLFS-0661",
+    "prijs": 4.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Brillendoekje - Margareta Van Eyck",
+    "artikelcode": "SHOLFS-0662",
+    "prijs": 4.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Brillendoekje - F.J. Navez - Portret van T. Jones",
+    "artikelcode": "SHOLFS-0663",
+    "prijs": 4.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Speelkaarten Margareta van Eyck / Filips de Goede",
+    "artikelcode": "SHOSPE-0234",
+    "prijs": 8.95,
+    "aantal": 500
+  },
+  {
+    "omschrijving": "Spiegeltje 'a copy of Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOLFS-0665",
+    "prijs": 3.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Spiegeltje Margareta van Eyck",
+    "artikelcode": "SHOLFS-0666",
+    "prijs": 3.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Spiegeltje 'Catalaanse atlas'",
+    "artikelcode": "SHOLFS-0667",
+    "prijs": 3.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Spiegeltje  F. J. Navez, J. Joneth met dochters",
+    "artikelcode": "SHOLFS-0668",
+    "prijs": 3.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Dienblad De Rozenhoedkaai - Bossuet - Groot model",
+    "artikelcode": "SHOLFS-0669",
+    "prijs": 23.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Waaier 'a copy of Firdazsi's \"Shahnama\"",
+    "artikelcode": "SHOLFS-0670",
+    "prijs": 12.5,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Pin in email 2D Helmet of Mehmet II",
+    "artikelcode": "SHOGAD-1038",
+    "prijs": 11.99,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet - A copy of Firdazsi's 'Shahnama'",
+    "artikelcode": "SHOSTA-1158",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet - A copy of Firdazsi's 'Shahnama' 2",
+    "artikelcode": "SHOSTA-1159",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Gom logo wit",
+    "artikelcode": "SHOSTA-1173",
+    "prijs": 3.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Gom logo groen",
+    "artikelcode": "SHOSTA-1174",
+    "prijs": 3.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Notebook hardcover A5",
+    "artikelcode": "SHOSTA-1175",
+    "prijs": 14.99,
+    "aantal": 300
+  },
+  {
+    "omschrijving": "Magneet - Description of the Holy land",
+    "artikelcode": "SHOSTA-1176",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Augustinus 'De Civitate Dei' (detail)",
+    "artikelcode": "SHOSTA-1177",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet - Ahmedi Alexandri Magni",
+    "artikelcode": "SHOSTA-1178",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Portret van Filips de Goede",
+    "artikelcode": "SHOSTA-1179",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Margareta van Eyck",
+    "artikelcode": "SHOSTA-1180",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Portret van aartshertog Albrecht",
+    "artikelcode": "SHOSTA-1181",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Portret van aartshertogin Isabella",
+    "artikelcode": "SHOSTA-1182",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Processie in Verona",
+    "artikelcode": "SHOSTA-1183",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Portret van T. Jonet en zijn 2 dochters",
+    "artikelcode": "SHOSTA-1184",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet - Hugo van der Goes - De dood van Maria",
+    "artikelcode": "SHOSTA-1185",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Margareta van Eyck",
+    "artikelcode": "SHOSTA-1186",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Magneet: Rozenhoedkaai",
+    "artikelcode": "SHOSTA-1187",
+    "prijs": 3.75,
+    "aantal": 100
+  },
+  {
+    "omschrijving": "Grafiet potlood BRUSK",
+    "artikelcode": "SHOSTA-1188",
+    "prijs": 2.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Multicolors potlood - diverse kleuren",
+    "artikelcode": "SHOSTA-1189",
+    "prijs": 4.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Multicolors Potlood Zwart",
+    "artikelcode": "SHOSTA-1190",
+    "prijs": 4.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Bic, inkt zwart - BRUSK",
+    "artikelcode": "SHOSTA-1191",
+    "prijs": 2.0,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "Potlood met gom - BRUSK",
+    "artikelcode": "SHOSTA-1192",
+    "prijs": 1.5,
+    "aantal": 2
+  },
+  {
+    "omschrijving": "GOKI Puzzel Ridderkasteel, 96 delig",
+    "artikelcode": "SHOSPE-0235",
+    "prijs": 12.5,
+    "aantal": 20
+  },
+  {
+    "omschrijving": "GOKI - Letterblokjes",
+    "artikelcode": "SHOSPE-0236",
+    "prijs": 12.5,
+    "aantal": 20
+  },
+  {
+    "omschrijving": "GOKI - Dubbele ratelgeluidmaker",
+    "artikelcode": "SHOSPE-0237",
+    "prijs": 5.99,
+    "aantal": 20
+  }
+]
