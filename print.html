@@ -32,8 +32,11 @@ if (!data) {
     const qr = document.createElement("div");
     qr.className = "qr";
 
-    const right = document.createElement("div");
-    right.className = "right";
+    const textWrap = document.createElement("div");
+    textWrap.className = "text-wrap";
+
+    const textRotate = document.createElement("div");
+    textRotate.className = "text-rotate";
 
     const price = document.createElement("div");
     price.className = "price";
@@ -43,11 +46,12 @@ if (!data) {
     code.className = "code";
     code.textContent = data.artikelcode;
 
-    right.appendChild(price);
-    right.appendChild(code);
+    textRotate.appendChild(price);
+    textRotate.appendChild(code);
+    textWrap.appendChild(textRotate);
 
     label.appendChild(qr);
-    label.appendChild(right);
+    label.appendChild(textWrap);
 
     page.appendChild(label);
     container.appendChild(page);
